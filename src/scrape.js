@@ -3,7 +3,7 @@
 require('dotenv').config()
 
 const path = require('path');
-const fs = require('fs');
+const fs = require('fs-extra');
 const puppeteer = require('puppeteer');
 const download = require('download');
 
@@ -43,13 +43,16 @@ let scrape = async () => {
 };
 
 scrape().then((value) => {
+	const pathDir = path.join(__dirname, '..') + '/' + process.env.PATH_FILE + '/' + process.env.PATH_VIDEO;
+	const fixPath = path.normalize(pathDir);
     // console.log(value.length); // Success!
-    // console.log(value);
+    //console.log(value);
+    //console.log(checkDir(fixPath));
     for (var result in value) {
 		// console.log(value[result]['title']);
 		download(value[result]['video']).then(data => {
-			checkDir(vidDir);
-			fs.writeFileSync(vidDir + value[result]['title'] + '.mp4', data);
+            checkDir(fixPath);
+			fs.outputFileSync(vidDir + value[result]['title'] + '.mp4', data);
 		}).then(() => { console.log('Download done..'); });
 	}
 

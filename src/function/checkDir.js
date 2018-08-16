@@ -1,10 +1,11 @@
-const fs = require('fs');
+const fs = require('fs-extra');
 
-function checkDirectorySync(directory) {  
+async function checkDirectorySync(directory) {  
   try {
-    fs.statSync(directory);
-  } catch(e) {
-    fs.mkdirSync(directory);
+    await fs.ensureDir(directory)
+    console.log('success!')
+  } catch (err) {
+    console.error(err)
   }
 }
 
