@@ -9,8 +9,6 @@ const download = require('download');
 
 const checkDir = require('./function/checkDir').dirCheck;
 
-const vidDir = path.join(__dirname, '..') + '/' + process.env.PATH_FILE + '/' + process.env.PATH_VIDEO;
-
 let scrape = async () => {
 	// Actual Scraping goes Here...
 
@@ -52,7 +50,7 @@ scrape().then((value) => {
 		// console.log(value[result]['title']);
 		download(value[result]['video']).then(data => {
             checkDir(fixPath);
-			fs.outputFileSync(vidDir + value[result]['title'] + '.mp4', data);
+			fs.outputFileSync(fixPath + value[result]['title'] + '.mp4', data);
 		}).then(() => { console.log('Download done..'); });
 	}
 
