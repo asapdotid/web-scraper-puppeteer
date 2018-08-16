@@ -9,7 +9,11 @@ const download = require('download');
 
 const checkDir = require('./function/checkDir').dirCheck;
 
-let scrape = async () => {
+const pathDir = path.join(__dirname, '..') + '/' + process.env.PATH_FILE + '/' + process.env.PATH_VIDEO;
+const fixPath = path.normalize(pathDir);
+const pathFull = path.normalize(pathDir + '/');
+
+var scrape = async () => {
 	// Actual Scraping goes Here...
 
 	const browser = await puppeteer.launch({headless: false});
@@ -41,17 +45,12 @@ let scrape = async () => {
 };
 
 scrape().then((value) => {
-	const pathDir = path.join(__dirname, '..') + '/' + process.env.PATH_FILE + '/' + process.env.PATH_VIDEO;
-	const fixPath = path.normalize(pathDir);
-    // console.log(value.length); // Success!
-    //console.log(value);
-    //console.log(checkDir(fixPath));
     for (var result in value) {
-		// console.log(value[result]['title']);
-		download(value[result]['video']).then(data => {
-            checkDir(fixPath);
-			fs.outputFileSync(fixPath + value[result]['title'] + '.mp4', data);
-		}).then(() => { console.log('Download done..'); });
-	}
-
+        download(value[result]['video']).then(data => {
+            // await checkDir(fixPath);
+            fs.outputFileSync(pathFull + value[result]['title'] + '.mp4', data);
+        }).then(() => {
+            console.log('Download done..');
+        });
+    }
 });
