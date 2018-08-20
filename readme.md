@@ -21,3 +21,7 @@ Running your code
 ```
 $npm run scrape
 ```
+
+## License
+
+MIT © [Asapdotid](https://bitbucket.org/asapdotid/)
