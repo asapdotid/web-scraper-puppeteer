@@ -6,12 +6,12 @@ const path = require('path');
 const fs = require('fs-extra');
 const puppeteer = require('puppeteer');
 const download = require('download');
+const slugify = require('slugify');
 
 const checkDir = require('./function/checkDir').dirCheck;
 
 const pathDir = path.join(__dirname, '..') + '/' + process.env.PATH_FILE + '/' + process.env.PATH_VIDEO;
 const fixPath = path.normalize(pathDir);
-const pathFull = path.normalize(pathDir + '/');
 
 var scrape = async () => {
 	// Actual Scraping goes Here...
@@ -19,7 +19,7 @@ var scrape = async () => {
 	const browser = await puppeteer.launch({headless: false});
 	const page = await browser.newPage();
 
-	await page.goto('https://coursehunters.net/course/ultimate-laravel-kurs-2018-paypal-webshop-restful-api');
+	await page.goto(process.env.PATH_DOMAIN);
 
 	const result = await page.evaluate(() => {
 	    let data = []; // Create an empty array that will store our data
@@ -31,9 +31,9 @@ var scrape = async () => {
 	        strArry[0] = 'lesson';
 	        let title = strArry.join(' ');
 
-	        let video = element.querySelector("link[itemprop='contentUrl']").href; // Select the url link
+	        let url = element.querySelector("link[itemprop='contentUrl']").href; // Select the url link
 
-	        data.push({title, video}); // Push an object with the data onto our array
+	        data.push({title, url}); // Push an object with the data onto our array
 	    }
 
 	    return data; // Return our data array
@@ -45,12 +45,19 @@ var scrape = async () => {
 };
 
 scrape().then((value) => {
-    for (var result in value) {
-        download(value[result]['video']).then(data => {
-            // await checkDir(fixPath);
-            fs.outputFileSync(pathFull + value[result]['title'] + '.mp4', data);
-        }).then(() => {
-            console.log('Download done..');
-        });
-    }
+    // #1
+    // let urls = [];
+    // for (var result in value) {
+    //     // urls.push(value[result]['url']);
+    // }
+    // Promise.all(urls.map(x => download(x, pathFull))).then(() => {
+    //     console.log('files downloaded!');
+    // });
+
+    // #2 Best Solution
+    checkDir(fixPath);
+    const pathFull = path.normalize(fixPath + '/');
+    Promise.all(value.map(x => download(x['url'], pathFull, {filename: slugify(x['title'], '_') + '.mp4'}))).then(() => {
+        console.log('files downloaded!');
+    });
 });
