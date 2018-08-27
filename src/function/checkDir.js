@@ -11,6 +11,6 @@ async function checkDirectorySync(directory) {
   }
 }
 
-module.exports ={
-	dirCheck: checkDirectorySync
+module.exports = {
+	checkDir: checkDirectorySync
 }
