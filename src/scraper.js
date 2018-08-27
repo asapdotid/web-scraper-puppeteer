@@ -45,12 +45,12 @@ let scraper = async () => {
 };
 
 scraper().then((value) => {
-    // #1 Best Solution
-    let pathFull = '';
+    // #1 Solution
+    let fullPath = '';
     checkDir(fixPath).then(() => {
-        pathFull = path.normalize(fixPath + '/');
+        fullPath = path.normalize(fixPath + '/');
+        Promise.all(value.map(x => download(x['url'], fullPath, {filename: slugify(x['title'], '_') + '.mp4'}))).then(() => {
+            console.log('files downloaded!');
+        });
 	});
-    Promise.all(value.map(x => download(x['url'], pathFull, {filename: slugify(x['title'], '_') + '.mp4'}))).then(() => {
-        console.log('files downloaded!');
-    });
 });
