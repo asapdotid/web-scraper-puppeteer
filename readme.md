@@ -1,7 +1,6 @@
 # Coursehunters.net Scraper
 
-> clone this repository
-> npm install
+> clone this repository & `npm install`
 
 
 ### Technology
