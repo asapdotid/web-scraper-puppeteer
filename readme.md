@@ -1,7 +1,6 @@
-# Install
+# Coursehunters.net Scraper
 
 > clone this repository
-
 > npm install
 
 
