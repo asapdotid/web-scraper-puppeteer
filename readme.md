@@ -4,6 +4,16 @@
 clone this repository
 ```
 
+### Technology
+
+- [Node Js](https://nodejs.org/)
+- [Puppeteer](https://github.com/GoogleChrome/puppeteer)
+- [Download](https://github.com/kevva/download)
+- [Slugify](https://github.com/simov/slugify)
+- [fs-extra](https://npm.taobao.org/package/fs-extra)
+- [dot-env](https://github.com/motdotla/dotenv)
+
+
 Set up environment (.env) in root directory 
 
 path domain must from `https://coursehunters.net/{url_for_tutorial}`
@@ -19,7 +29,7 @@ PATH_PDF=pdf
 
 Running your code
 ```
-$npm run scrape
+$npm run scraper
 ```
 
 ## License
