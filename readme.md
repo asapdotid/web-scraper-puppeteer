@@ -2,6 +2,8 @@
 
 ```
 clone this repository
+
+npm install
 ```
 
 ### Technology
