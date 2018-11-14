@@ -1,16 +1,12 @@
 'use strict'
 
-const fs = require('fs-extra');
+import fs from 'fs-extra'
 
-async function checkDirectorySync(directory) {  
+exports.checkDirectory = async (directory) => {  
 	try {
 		await fs.ensureDir(directory)
-		console.log('success create directory '+ directory + '!');
+		console.log('success create directory '+ directory + '!')
 	} catch (err) {
 		console.error(err)
 	}
-}
-
-module.exports = {
-	checkDir: checkDirectorySync
 }

@@ -1,10 +1,9 @@
-## Install
+# Install
 
-```
-clone this repository
+> clone this repository
 
-npm install
-```
+> npm install
+
 
 ### Technology
 
@@ -15,8 +14,25 @@ npm install
 - [fs-extra](https://npm.taobao.org/package/fs-extra)
 - [dot-env](https://github.com/motdotla/dotenv)
 
+### For Development
+- [babel-cli](https://babeljs.io/docs/en/babel-cli)
+- [babel-preset-env](https://babeljs.io/docs/en/babel-preset-env)
+- [nodemon](https://nodemon.io/)
 
-Set up environment (.env) in root directory 
+
+### Setup Bubel ES6
+> create file `.babelrc` in root directory
+
+```
+{ 
+	"presets": ["env"]
+}
+```
+
+
+### Set up environment (.env) in root directory 
+> $ cp .env.example .env
+
 
 path domain must from `https://coursehunters.net/{url_for_tutorial}`
 
@@ -31,7 +47,7 @@ PATH_PDF=pdf
 
 Running your code
 ```
-$npm run scraper
+$npm run start
 ```
 
 ## License

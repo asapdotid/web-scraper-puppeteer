@@ -1,14 +1,10 @@
-const puppeteer = require('puppeteer');
+'use strict'
 
-async function getPic() {
-  //const browser = await puppeteer.launch();
-  const browser = await puppeteer.launch({headless: false});
-  const page = await browser.newPage();
-  await page.goto('https://google.com');
-  await page.setViewport({width: 1000, height: 500})
-  await page.screenshot({path: './img/google.png'});
+require('dotenv').config()
 
-  await browser.close();
-}
+import { Scraping as scraper } from './function/scraping'
+import { Download as dl } from './function/download'
 
-getPic();
+scraper().then( (value) => {
+    dl(value);
+});
