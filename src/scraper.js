@@ -22,7 +22,12 @@ let scraper = async () => {
 	await page.goto(process.env.PATH_DOMAIN);
 
 	const result = await page.evaluate(() => {
-	    let data = []; // Create an empty array that will store our data
+	    let r = [];
+	    let data= [];
+
+	    let lessonTitleElement = document.querySelector('div.original-name');
+		let lessonTitle = lessonTitleElement.textContent || lessonTitleElement.innerText;
+
 	    let elements = document.querySelectorAll('li.lessons-list__li'); // Select all Products
 
 	    for (let element of elements){ // Loop through each proudct
@@ -36,20 +41,34 @@ let scraper = async () => {
 	        data.push({title, url}); // Push an object with the data onto our array
 	    }
 
-	    return data; // Return our data array
+	    r[0] = lessonTitle;
+	    r[1] = data;
+
+	    return r;
 	});
 
-	browser.close();
+	browser.close(); // close browser
+
 	return result; // Return the data
-  	// Return a value
 };
 
-scraper().then((value) => {
-    // #1 Solution
+scraper().then( (value) => {
     let fullPath = '';
-    checkDir(fixPath).then(() => {
-        fullPath = path.normalize(fixPath + '/');
-        Promise.all(value.map(x => download(x['url'], fullPath, {filename: slugify(x['title'], '_') + '.mp4'}))).then(() => {
+    // console.log(value[0]);
+    // console.log(path.normalize(fixPath + '/' + value[0] + '/'));
+    let dirExist = path.normalize(fixPath + '/' + value[0])
+    checkDir(dirExist).then( () => {
+        fullPath = path.normalize(dirExist + '/');
+        Promise.all( 
+        	value[1].map(
+	        	x => download(
+	        		x['url'], 
+	        		fullPath, 
+	        		{filename: slugify(x['title'], '_') + '.mp4'}
+        		)
+    		)
+        )
+        .then( () => {
             console.log('files downloaded!');
         });
 	});

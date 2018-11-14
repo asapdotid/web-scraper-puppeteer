@@ -6,7 +6,7 @@ clone this repository
 
 Set up environment (.env) in root directory 
 
-path domain must from https://coursehunters.net/{url_for_tutorial}
+path domain must from `https://coursehunters.net/{url_for_tutorial}`
 
 ```
 NODE_PATH=src
