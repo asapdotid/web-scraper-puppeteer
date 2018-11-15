@@ -8,7 +8,7 @@ import slugify from'slugify'
 
 import { checkDirectory as checkDir } from './checkDir'
 
-const pathDir = path.join(__dirname, '..') + '/' + process.env.PATH_FILE + '/' + process.env.PATH_VIDEO
+const pathDir = path.join(__dirname, '../..') + '/' + process.env.PATH_FILE + '/' + process.env.PATH_VIDEO
 const fixPath = path.normalize(pathDir)
 
 exports.Download = (data) => {
@@ -28,6 +28,11 @@ exports.Download = (data) => {
         )
         .then( () => {
             console.log('files downloaded!')
+            process.once('SIGUSR2', () => {
+				gracefulShutdown( () => {
+					process.kill(process.pid, 'SIGUSR2')
+				})
+			}).exit(0)
         })
 	})
 }
