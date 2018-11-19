@@ -13,7 +13,9 @@ const fixPath = path.normalize(pathDir)
 
 exports.Download = (data) => {
 	let fullPath = ''
-    let dirExist = path.normalize(fixPath + '/' + data[0])
+    let regex = /:/;
+    let subjectTitle = data[0].replace(regex, ' -')
+    let dirExist = path.normalize(fixPath + '/' + subjectTitle)
 
     checkDir(dirExist).then( () => {
         fullPath = path.normalize(dirExist + '/');
