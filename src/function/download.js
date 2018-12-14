@@ -12,14 +12,14 @@ const pathDir = path.join(__dirname, '../..') + '/' + process.env.PATH_FILE + '/
 const fixPath = path.normalize(pathDir)
 
 exports.Download = (data) => {
+    const regex = /:/
 	let fullPath = ''
-    let regex = /:/;
     let subjectTitle = data[0].replace(regex, ' -')
     let dirExist = path.normalize(fixPath + '/' + subjectTitle)
 
     checkDir(dirExist).then( () => {
-        fullPath = path.normalize(dirExist + '/');
-        Promise.all( 
+        fullPath = path.normalize(dirExist + '/')
+        Promise.all(
         	data[1].map(
 	        	x => download(
 	        		x['url'], 

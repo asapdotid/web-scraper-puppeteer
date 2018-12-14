@@ -19,7 +19,7 @@ exports.Scraping = async () => {
 	    let lessonTitleElement = document.querySelector('div.original-name')
 		let lessonTitle = lessonTitleElement.textContent || lessonTitleElement.innerText
 
-	    let elements = document.querySelectorAll('li.lessons-list__li'); // Select all Products
+	    let elements = document.querySelectorAll('li.lessons-list__li') // Select all Products
 
 	    for (let element of elements){ // Loop through each proudct
 	        let str = element.childNodes[3].innerText // Select the title
