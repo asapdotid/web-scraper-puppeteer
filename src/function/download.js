@@ -28,8 +28,7 @@ exports.Download = (data) => {
                         fullPath + slugify(x['title'], '_') + '.mp4'
                     )
                     .then( async (exists) => {
-                        if (!exists) {
-                            // console.log(x['url'])
+                        if (!exists) {                            
                             await download(
                                 x['url'], 
                                 fullPath, 
@@ -40,8 +39,6 @@ exports.Download = (data) => {
                         }
                     })
             )
-
-
         )
         .then( () => {
             console.log('files downloaded!')
