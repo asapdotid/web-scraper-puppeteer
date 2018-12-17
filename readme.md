@@ -11,6 +11,7 @@
 - [Slugify](https://github.com/simov/slugify)
 - [fs-extra](https://npm.taobao.org/package/fs-extra)
 - [dot-env](https://github.com/motdotla/dotenv)
+- [file-exists](https://www.npmjs.com/package/file-exists)
 
 ### For Development
 - [babel-cli](https://babeljs.io/docs/en/babel-cli)
