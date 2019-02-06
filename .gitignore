@@ -8,7 +8,8 @@
 
 # production
 /build
-/files
+/files/*
+!/files/.keepfile
 /dist
 
 # misc
