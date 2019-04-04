@@ -18,6 +18,7 @@ exports.Scraping = async () => {
 
 	    let lessonTitleElement = document.querySelector('div.original-name')
 		let lessonTitle = lessonTitleElement.textContent || lessonTitleElement.innerText
+		let lessonTitleClean = lessonTitle.replace(/[^a-zA-Z0-9-. ]/g, "")
 
 	    let elements = document.querySelectorAll('li.lessons-list__li') // Select all Files
 		
@@ -31,7 +32,7 @@ exports.Scraping = async () => {
 	        data.push({title, url}) // Push an object with the data onto our array	
 		})
 
-	    r[0] = lessonTitle
+	    r[0] = lessonTitleClean
 	    r[1] = data
 
 	    return r

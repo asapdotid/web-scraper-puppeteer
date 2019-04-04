@@ -42,11 +42,6 @@ exports.Download = (data) => {
         )
         .then( () => {
             console.log('files downloaded!')
-            process.once('SIGUSR2', () => {
-				gracefulShutdown( () => {
-					process.kill(process.pid, 'SIGUSR2')
-				})
-			}).exit(0)
         })
 	})
 }
