@@ -1,6 +1,6 @@
 # Coursehunters.net Scraper
 
-> clone this repository & `npm install`
+> clone this repository & `npm install` or `yarn install`
 
 
 ### Technology
@@ -14,17 +14,19 @@
 - [file-exists](https://www.npmjs.com/package/file-exists)
 
 ### For Development
-- [babel-cli](https://babeljs.io/docs/en/babel-cli)
-- [babel-preset-env](https://babeljs.io/docs/en/babel-preset-env)
+- [@babel/cli](https://babeljs.io/docs/en/babel-cli)
+- [@babel/core](https://babeljs.io/docs/en/babel-core)
+- [@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env)
+- [@babel/node](https://babeljs.io/docs/en/babel-node)
 - [nodemon](https://nodemon.io/)
 
 
-### Setup Bubel ES6
+### Setup Babel v7
 > create file `.babelrc` in root directory
 
 ```
 { 
-	"presets": ["env"]
+	"presets": ["@babel/preset-env"]
 }
 ```
 
@@ -51,4 +53,4 @@ $npm run start
 
 ## License
 
-MIT © [Asapdotid](https://bitbucket.org/asapdotid/)
+MIT © [Asapdotid](https://github.com/asapdotid)

@@ -23,10 +23,6 @@ exports.Scraping = async () => {
 	    let elements = document.querySelectorAll('li.lessons-item') // Select all Files
 		
 		elements.forEach( (element, index) => {
-			// let str = element.childNodes[1].innerText // Select the title
-	        // let strArry = str.split(" ")
-	        // strArry[0] = 'lesson'
-			// let title = strArry.join(' ')
 			let number = index++
 			let title = 'Lesson ' + number + ' - ' + element.querySelector("div[class='lessons-name']").innerText
 	        let url = element.querySelector("link[itemprop='contentUrl']").href // Select the url link
