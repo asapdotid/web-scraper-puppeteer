@@ -16,11 +16,11 @@ exports.Scraping = async () => {
 	    let r = []
 	    let data= []
 
-	    let lessonTitleElement = document.querySelector('p.hero-description')
+	    let lessonTitleElement = document.querySelector("p[class='hero-description']")
 		let lessonTitle = lessonTitleElement.textContent || lessonTitleElement.innerText
 		let lessonTitleClean = lessonTitle.replace(/[^a-zA-Z0-9-. ]/g, "")
 
-	    let elements = document.querySelectorAll('li.lessons-item') // Select all Files
+	    let elements = document.querySelectorAll("li[class='lessons-item']") // Select all Files
 		
 		elements.forEach( (element, index) => {
 			let number = index++
