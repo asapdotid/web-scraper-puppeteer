@@ -1,0 +1,3 @@
+- https://coursehunters.net/course/prodvinutoe-proektirovanie-komponentov-vue
+- https://coursehunters.net/course/nestjs-sovremennaya-back-end-razrabotka-s-typescript
+- https://coursehunters.net/course/nodejs-polnoe-rukovodstvo-vklyuchaya-mvc-rest-api-graphql
