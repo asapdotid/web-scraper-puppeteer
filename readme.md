@@ -48,7 +48,7 @@ PATH_PDF=pdf
 
 Running your code
 ```
-$npm run start
+$npm run serve
 ```
 
 ## License
